@@ -2,130 +2,135 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mumtaj Biryani</title>
 
 <style>
   body {
-    margin:0;
-    font-family: "Georgia", serif;
-    background:#f4f1e8;
-    color:#3b1f17;
+    margin: 0;
+    font-family: "Inter", Arial, sans-serif;
+    background: #f2f2f7;
+    color: #222;
   }
 
   header {
-    background:#7a0a0a;
-    color:#fce9c9;
-    padding:25px 15px;
-    text-align:center;
-    font-size:28px;
-    font-weight:bold;
-    letter-spacing:1px;
+    background: #d7263d;
+    color: white;
+    padding: 25px 15px;
+    text-align: center;
+    font-size: 28px;
+    font-weight: 700;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
   }
 
-  .sub {
-    text-align:center;
-    font-size:15px;
-    margin-top:10px;
-    color:#7a0a0a;
-    font-weight:bold;
-  }
-
-  .address {
-    text-align:center;
-    font-size:14px;
-    margin-top:4px;
-    color:#7a0a0a;
+  .sub, .address {
+    text-align: center;
+    color: #333;
+    font-size: 15px;
+    margin-top: 8px;
   }
 
   .menu {
-    padding:20px;
-    max-width:650px;
-    margin:auto;
-    display:grid;
-    gap:20px;
+    padding: 20px;
+    max-width: 650px;
+    margin: auto;
+    display: grid;
+    gap: 20px;
   }
 
   .item {
-    background:#fff;
-    border-radius:14px;
-    box-shadow:0 4px 10px rgba(0,0,0,0.15);
-    overflow:hidden;
-    border:2px solid #d9c299;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    overflow: hidden;
   }
 
   .item img {
-    width:100%;
-    height:180px;
-    object-fit:cover;
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
   }
 
   .details {
-    padding:15px;
+    padding: 15px;
   }
 
   .details h3 {
-    margin:0;
-    font-size:20px;
-    color:#7a0a0a;
-    font-weight:bold;
+    margin: 0;
+    font-size: 20px;
+    font-weight: 600;
+    color: #d7263d;
   }
 
   .details p {
-    margin:6px 0;
-    font-size:15px;
+    margin: 6px 0;
+    font-size: 15px;
+    color: #444;
   }
 
   input[type=number] {
-    width:70px;
-    padding:6px;
-    border:1px solid #b89979;
-    border-radius:6px;
-    background:#fbf7f2;
+    width: 70px;
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    background: #fafafa;
+    font-size: 15px;
   }
 
   .order-box {
-    max-width:650px;
-    margin:25px auto;
-    padding:0 20px 40px;
+    max-width: 650px;
+    margin: 25px auto;
+    padding: 0 20px 40px;
   }
 
   .total-box {
-    margin-top:15px;
-    padding:12px;
-    background:#fff7e6;
-    border:1px solid #e0c9a6;
-    border-radius:8px;
-    font-size:18px;
-    font-weight:bold;
-    color:#7a0a0a;
+    margin-top: 15px;
+    padding: 15px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+    font-size: 18px;
+    font-weight: 600;
+    color: #d7263d;
   }
 
-  input[type=text], input[type=datetime-local], select {
-    width:100%;
-    padding:12px;
-    margin-top:15px;
-    border:1px solid #b89979;
-    border-radius:8px;
-    background:#fbf7f2;
-    font-size:16px;
+  input[type=text], input[type=datetime-local], select, textarea {
+    width: 100%;
+    padding: 12px;
+    margin-top: 15px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    background: #fff;
+    font-size: 16px;
+  }
+
+  textarea {
+    height: 90px;
+    resize: none;
   }
 
   button {
-    margin-top:20px;
-    width:100%;
-    padding:15px;
-    font-size:18px;
-    background:#7a0a0a;
-    color:#fce9c9;
-    border:none;
-    border-radius:10px;
-    font-weight:bold;
-    cursor:pointer;
-    letter-spacing:0.5px;
+    margin-top: 20px;
+    width: 100%;
+    padding: 15px;
+    font-size: 18px;
+    font-weight: 600;
+    background: #d7263d;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
   }
 
-  button:hover {background:#8f1212;}
+  button:hover {
+    background: #b81f32;
+  }
+
+  #addressBox {
+    display: none;
+  }
+
 </style>
 </head>
 
@@ -140,28 +145,40 @@
 
 <div class="order-box">
 
-  <label style="font-weight:bold;">Customer Name:</label>
+  <label style="font-weight:600;">Customer Name:</label>
   <input type="text" id="customerName" placeholder="Enter your name">
 
-  <label style="font-weight:bold;">Order Type:</label>
-  <select id="orderType">
+  <label style="font-weight:600;">Order Type:</label>
+  <select id="orderType" onchange="toggleAddress()">
     <option value="Delivery">Delivery</option>
     <option value="Pickup">Pickup</option>
     <option value="Dine In">Dine In</option>
   </select>
 
-  <div class="total-box">Total Amount: ₹<span id="total">0</span></div>
+  <!-- Delivery address box -->
+  <div id="addressBox">
+    <label style="font-weight:600;">Delivery Address:</label>
+    <textarea id="deliveryAddress" placeholder="Enter full address"></textarea>
+  </div>
 
-  <label style="font-weight:bold;">Select Delivery Date & Time:</label>
+  <div class="total-box">
+    Total Amount: ₹<span id="total">0</span>
+  </div>
+
+  <label style="font-weight:600;">Select Date & Time:</label>
   <input type="datetime-local" id="datetime">
 
   <button onclick="sendOrder()">Order on WhatsApp</button>
+
 </div>
 
 <script>
-const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTP0KJ_WjnHoYVec0BEQQkWw9ZmiQNquh-WapC5hAb6sSdqAmCOOIyeKG6UNG7R83w3zvS-0todyla3/pub?output=csv";
+const sheetURL =
+ "https://docs.google.com/spreadsheets/d/e/2PACX-1vTP0KJ_WjnHoYVec0BEQQkWw9ZmiQNquh-WapC5hAb6sSdqAmCOOIyeKG6UNG7R83w3zvS-0todyla3/pub?output=csv";
+
 const whatsappNumber = "918319100020";
 
+// Load menu from Google Sheet
 async function loadMenu() {
   const res = await fetch(sheetURL);
   const text = await res.text();
@@ -188,11 +205,20 @@ async function loadMenu() {
         data-price="${price}" oninput="updateTotal()">
       </div>
     `;
+
     box.dataset.name = item;
     menuContainer.appendChild(box);
   }
 }
 
+// Show/hide address based on order type
+function toggleAddress() {
+  const type = document.getElementById("orderType").value;
+  document.getElementById("addressBox").style.display =
+    type === "Delivery" ? "block" : "none";
+}
+
+// Update total
 function updateTotal() {
   let total = 0;
   const inputs = document.querySelectorAll("input[type=number]");
@@ -204,12 +230,14 @@ function updateTotal() {
   document.getElementById("total").textContent = total;
 }
 
+// Disable past times
 function setMinDateTime() {
   const now = new Date();
   now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
-  document.getElementById("datetime").min = now.toISOString().slice(0,16);
+  document.getElementById("datetime").min = now.toISOString().slice(0, 16);
 }
 
+// Send order to WhatsApp
 function sendOrder() {
   const customerName = document.getElementById("customerName").value.trim();
   if (!customerName) {
@@ -217,11 +245,22 @@ function sendOrder() {
     return;
   }
 
+  const orderType = document.getElementById("orderType").value;
+
+  let address = "";
+  if (orderType === "Delivery") {
+    address = document.getElementById("deliveryAddress").value.trim();
+    if (!address) {
+      alert("Please enter delivery address.");
+      return;
+    }
+  }
+
   const items = document.querySelectorAll(".item");
   let orderList = [];
 
   items.forEach((it, i) => {
-    const qty = document.getElementById(`qty-${i+1}`);
+    const qty = document.getElementById(`qty-${i + 1}`);
     if (qty && qty.value > 0) {
       orderList.push(`${it.dataset.name} x${qty.value}`);
     }
@@ -234,14 +273,13 @@ function sendOrder() {
 
   const dt = document.getElementById("datetime").value;
   if (!dt) {
-    alert("Please select delivery date & time.");
+    alert("Please select date and time.");
     return;
   }
 
-  const orderType = document.getElementById("orderType").value;
   const total = document.getElementById("total").textContent;
 
-  const msg =
+  let msg =
 `Order from: ${customerName}
 
 ${orderList.join("\n")}
@@ -250,11 +288,16 @@ Order Type: ${orderType}
 Total Amount: ₹${total}
 Delivery Time: ${dt}`;
 
+  if (address) {
+    msg += `\nAddress: ${address}`;
+  }
+
   window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(msg)}`, "_blank");
 }
 
 loadMenu();
 setMinDateTime();
+toggleAddress();
 </script>
 
 </body>
