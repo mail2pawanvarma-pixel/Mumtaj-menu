@@ -4,101 +4,181 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Mumtaj Biryani</title>
+
 <style>
   body {
-    margin:0;
-    font-family:"Poppins",sans-serif;
-    background:#f8f9fa;
-    color:#333;
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    background: #f7f3ef;
+    color: #333;
   }
-  header {
-    background:#8B0000;
-    color:#fff;
-    text-align:center;
-    padding:20px 10px;
-    font-size:24px;
-    letter-spacing:1px;
+
+  /* Royal Header */
+  .hero {
+    background: linear-gradient(135deg, #7a0000, #a80000, #7a0000);
+    color: #fff;
+    text-align: center;
+    padding: 45px 20px 55px 20px;
+    position: relative;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.25);
   }
+
+  .hotel-name {
+    font-size: 36px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+    font-family: Georgia, serif;
+  }
+
+  .tagline {
+    margin-top: 8px;
+    font-size: 15px;
+    color: #ffe8d6;
+    letter-spacing: 0.6px;
+  }
+
+  .decor-line {
+    width: 120px;
+    height: 3px;
+    background: gold;
+    margin: 18px auto 0;
+    border-radius: 10px;
+  }
+
+  /* Menu Items */
   .menu {
-    display:grid;
-    grid-template-columns:1fr;
-    gap:15px;
-    padding:20px;
-    max-width:600px;
-    margin:auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+    padding: 20px;
+    max-width: 650px;
+    margin: 25px auto;
   }
+
   .item {
-    background:#fff;
-    border-radius:12px;
-    box-shadow:0 2px 8px rgba(0,0,0,0.1);
-    overflow:hidden;
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    overflow: hidden;
+    border: 1px solid #e8d8c3;
   }
+
   .item img {
-    width:100%;
-    height:180px;
-    object-fit:cover;
+    width: 100%;
+    height: 190px;
+    object-fit: cover;
+    background: #f0e7dd;
   }
+
   .details {
-    padding:15px;
+    padding: 15px;
   }
+
   .details h3 {
-    margin:0 0 5px;
-    color:#8B0000;
+    margin: 0 0 5px;
+    color: #7a0000;
+    font-size: 20px;
   }
+
   .details p {
-    margin:3px 0;
-    color:#555;
+    margin: 3px 0;
+    color: #555;
   }
+
   .details input {
-    width:70px;
-    padding:5px;
-    border:1px solid #ccc;
-    border-radius:5px;
-    margin-top:5px;
+    width: 70px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    margin-top: 5px;
   }
-  label {font-size:14px;}
+
+  /* Order Section */
   .order-section {
-    max-width:600px;
-    margin:20px auto;
-    padding:0 20px 40px;
+    max-width: 650px;
+    margin: 15px auto 60px;
+    padding: 0 20px;
   }
-  input[type="datetime-local"] {
-    width:100%;
-    padding:10px;
-    margin-top:10px;
-    border-radius:8px;
-    border:1px solid #ccc;
-    font-size:16px;
+
+  input[type="datetime-local"],
+  input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    margin-top: 12px;
+    border-radius: 10px;
+    border: 1px solid #bbb;
+    font-size: 16px;
   }
+
+  #total {
+    text-align: right;
+    font-weight: bold;
+    margin-top: 12px;
+    font-size: 20px;
+    color: #7a0000;
+  }
+
   button {
-    width:100%;
-    background:#8B0000;
-    color:#fff;
-    border:none;
-    padding:14px;
-    font-size:16px;
-    border-radius:8px;
-    cursor:pointer;
-    margin-top:20px;
+    width: 100%;
+    background: #7a0000;
+    color: #fff;
+    border: none;
+    padding: 15px;
+    font-size: 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 22px;
+    letter-spacing: 0.5px;
   }
-  button:hover {background:#a4161a;}
+
+  button:hover {
+    background: #a4161a;
+  }
+
+  #thankyou {
+    display: none;
+    text-align: center;
+    color: green;
+    font-size: 18px;
+    margin-top: 20px;
+  }
 </style>
+
 </head>
 <body>
 
-<header>Mumtaj Biryani</header>
+<!-- Royal Header -->
+<header class="hero">
+  <div class="hotel-name">Mumtaj Biryani</div>
+  <div class="tagline">Authentic Hyderabadi Taste Served Fresh</div>
+  <div class="decor-line"></div>
+</header>
+
+<!-- Menu Container -->
 <div id="menu" class="menu"></div>
 
+<!-- Order Section -->
 <div class="order-section">
   <label for="datetime">Delivery Date & Time:</label>
   <input type="datetime-local" id="datetime" required>
+
+  <label for="address">Delivery Address:</label>
+  <input type="text" id="address" placeholder="Enter full delivery address" required>
+
+  <p id="total">Total: ₹0</p>
+
   <button onclick="sendOrder()">Send Order on WhatsApp</button>
+
+  <div id="thankyou">Thank you for ordering with Mumtaj Biryani. We will confirm your order soon on WhatsApp.</div>
 </div>
 
 <script>
-// Google Sheet link converted to CSV
-const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTP0KJ_WjnHoYVec0BEQQkWw9ZmiQNquh-WapC5hAb6sSdqAmCOOIyeKG6UNG7R83w3zvS-0todyla3/pub?output=csv";
-const whatsappNumber = "918319100020"; // includes country code
+/* LIVE Menu Google Sheet CSV */
+const sheetURL =
+  "https://docs.google.com/spreadsheets/d/e/2PACX-1vTP0KJ_WjnHoYVec0BEQQkWw9ZmiQNquh-WapC5hAb6sSdqAmCOOIyeKG6UNG7R83w3zvS-0todyla3/pub?output=csv";
+
+const whatsappNumber = "918319100020"; // Correct format with country code
 
 async function loadMenu() {
   try {
@@ -106,49 +186,82 @@ async function loadMenu() {
     const text = await res.text();
     const rows = text.split("\n").map(r => r.split(","));
     const menuContainer = document.getElementById("menu");
+
     for (let i = 1; i < rows.length; i++) {
       const [item, desc, price, image] = rows[i];
       if (!item) continue;
+
       const div = document.createElement("div");
       div.className = "item";
+
       div.innerHTML = `
-        ${image ? `<img src="${image.trim()}" alt="${item}">` : ""}
+        ${image ? `<img src="${image.trim()}" alt="${item}" onerror="this.src='https://via.placeholder.com/600x400?text=No+Image'">` : ""}
         <div class="details">
           <h3>${item}</h3>
           <p>${desc}</p>
           <p><strong>₹${price}</strong></p>
-          <label>Qty: <input type="number" min="0" value="0" id="qty-${i}"></label>
-        </div>`;
+          <label>Qty: <input type="number" min="0" value="0" id="qty-${i}" onchange="updateTotal()"></label>
+        </div>
+      `;
+
       div.dataset.name = item;
-      div.dataset.price = price;
+      div.dataset.price = parseFloat(price) || 0;
+
       menuContainer.appendChild(div);
     }
   } catch (e) {
     document.getElementById("menu").innerHTML =
-      "<p style='text-align:center;color:red;'>Unable to load menu. Check sheet link.</p>";
+      "<p style='text-align:center;color:red;'>Menu loading failed. Check your Google Sheet.</p>";
   }
+}
+
+function updateTotal() {
+  const items = document.querySelectorAll(".item");
+  let total = 0;
+
+  items.forEach((it, i) => {
+    const qtyInput = document.getElementById(`qty-${i+1}`);
+    if (qtyInput && qtyInput.value > 0) {
+      total += it.dataset.price * qtyInput.value;
+    }
+  });
+
+  document.getElementById("total").innerText = `Total: ₹${total}`;
 }
 
 function sendOrder() {
   const items = document.querySelectorAll(".item");
   let orderList = [];
+  let total = 0;
+
   items.forEach((it, i) => {
     const qty = document.getElementById(`qty-${i+1}`);
     if (qty && qty.value > 0) {
       orderList.push(`${it.dataset.name} x${qty.value}`);
+      total += it.dataset.price * qty.value;
     }
   });
+
   if (orderList.length === 0) {
     alert("Please select at least one item.");
     return;
   }
+
   const datetime = document.getElementById("datetime").value;
-  if (!datetime) {
-    alert("Please select delivery date and time.");
+  const address = document.getElementById("address").value.trim();
+
+  if (!datetime || !address) {
+    alert("Please enter date/time and address.");
     return;
   }
-  const msg = `New Order from Mumtaj Biryani:%0A${orderList.join("%0A")}%0A%0ADelivery: ${datetime}`;
+
+  const msg =
+    `New Order from Mumtaj Biryani:%0A${orderList.join("%0A")}%0A%0ATotal: ₹${total}%0ADelivery: ${datetime}%0AAddress: ${address}`;
+
   window.open(`https://wa.me/${whatsappNumber}?text=${msg}`, "_blank");
+
+  document.getElementById("thankyou").style.display = "block";
+  document.getElementById("menu").scrollIntoView({ behavior: "smooth" });
 }
 
 loadMenu();
