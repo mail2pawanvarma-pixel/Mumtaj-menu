@@ -7,238 +7,197 @@
 
 <style>
   body {
-    margin: 0;
-    font-family: "Poppins", sans-serif;
-    background: #f7f3ef;
-    color: #333;
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:#fafafa;
   }
 
-  /* Royal Header */
-  .hero {
-    background: linear-gradient(135deg, #7a0000, #a80000, #7a0000);
-    color: #fff;
-    text-align: center;
-    padding: 45px 20px 55px 20px;
-    position: relative;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+  header {
+    background:#8B0000;
+    color:#fff;
+    padding:20px;
+    text-align:center;
+    font-size:24px;
+    font-weight:bold;
   }
 
-  .hotel-name {
-    font-size: 36px;
-    font-weight: 800;
-    letter-spacing: 1px;
-    text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
-    font-family: Georgia, serif;
-  }
-
-  .tagline {
-    margin-top: 8px;
-    font-size: 15px;
-    color: #ffe8d6;
-    letter-spacing: 0.6px;
-  }
-
-  .decor-line {
-    width: 120px;
-    height: 3px;
-    background: gold;
-    margin: 18px auto 0;
-    border-radius: 10px;
-  }
-
-  /* Menu Items */
   .menu {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 18px;
-    padding: 20px;
-    max-width: 650px;
-    margin: 25px auto;
+    padding:20px;
+    max-width:650px;
+    margin:auto;
+    display:grid;
+    gap:18px;
   }
 
   .item {
-    background: #fff;
-    border-radius: 14px;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-    overflow: hidden;
-    border: 1px solid #e8d8c3;
+    background:#fff;
+    border-radius:12px;
+    box-shadow:0 3px 8px rgba(0,0,0,0.1);
+    overflow:hidden;
   }
 
   .item img {
-    width: 100%;
-    height: 190px;
-    object-fit: cover;
-    background: #f0e7dd;
+    width:100%;
+    height:180px;
+    object-fit:cover;
   }
 
   .details {
-    padding: 15px;
+    padding:15px;
   }
 
   .details h3 {
-    margin: 0 0 5px;
-    color: #7a0000;
-    font-size: 20px;
+    margin:0;
+    font-size:20px;
+    color:#8B0000;
   }
 
   .details p {
-    margin: 3px 0;
-    color: #555;
+    margin:5px 0;
+    color:#444;
   }
 
-  .details input {
-    width: 70px;
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    margin-top: 5px;
+  input[type=number] {
+    width:70px;
+    padding:6px;
+    border:1px solid #aaa;
+    border-radius:6px;
   }
 
-  /* Order Section */
-  .order-section {
-    max-width: 650px;
-    margin: 15px auto 60px;
-    padding: 0 20px;
+  .order-box {
+    max-width:650px;
+    margin:25px auto;
+    padding:0 20px 40px;
   }
 
-  input[type="datetime-local"],
-  input[type="text"] {
-    width: 100%;
-    padding: 12px;
-    margin-top: 12px;
-    border-radius: 10px;
-    border: 1px solid #bbb;
-    font-size: 16px;
-  }
-
-  #total {
-    text-align: right;
-    font-weight: bold;
-    margin-top: 12px;
-    font-size: 20px;
-    color: #7a0000;
+  input[type=datetime-local] {
+    width:100%;
+    padding:12px;
+    margin-top:15px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:16px;
   }
 
   button {
-    width: 100%;
-    background: #7a0000;
-    color: #fff;
-    border: none;
-    padding: 15px;
-    font-size: 18px;
-    border-radius: 10px;
-    cursor: pointer;
-    margin-top: 22px;
-    letter-spacing: 0.5px;
+    margin-top:20px;
+    width:100%;
+    padding:14px;
+    font-size:18px;
+    background:#8B0000;
+    color:#fff;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
   }
 
-  button:hover {
-    background: #a4161a;
+  button:hover {background:#a4161a;}
+
+  /* Popup box */
+  .popup-bg {
+    position:fixed;
+    top:0;left:0;right:0;bottom:0;
+    background:rgba(0,0,0,0.6);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
   }
 
-  #thankyou {
-    display: none;
-    text-align: center;
-    color: green;
-    font-size: 18px;
-    margin-top: 20px;
+  .popup-box {
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    width:85%;
+    max-width:350px;
+    text-align:center;
+    box-shadow:0 4px 10px rgba(0,0,0,0.2);
+  }
+
+  .popup-box h2 {
+    margin-top:0;
+    color:#8B0000;
+  }
+
+  .popup-box button {
+    background:#8B0000;
+    padding:10px 20px;
+    border-radius:8px;
+    border:none;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+    margin-top:15px;
   }
 </style>
-
 </head>
+
 <body>
 
-<!-- Royal Header -->
-<header class="hero">
-  <div class="hotel-name">Mumtaj Biryani</div>
-  <div class="tagline">Authentic Hyderabadi Taste Served Fresh</div>
-  <div class="decor-line"></div>
-</header>
+<header>Mumtaj Biryani</header>
 
-<!-- Menu Container -->
 <div id="menu" class="menu"></div>
 
-<!-- Order Section -->
-<div class="order-section">
-  <label for="datetime">Delivery Date & Time:</label>
-  <input type="datetime-local" id="datetime" required>
-
-  <label for="address">Delivery Address:</label>
-  <input type="text" id="address" placeholder="Enter full delivery address" required>
-
-  <p id="total">Total: ₹0</p>
-
+<div class="order-box">
+  <label>Select Delivery Date & Time:</label>
+  <input type="datetime-local" id="datetime">
   <button onclick="sendOrder()">Send Order on WhatsApp</button>
-
-  <div id="thankyou">Thank you for ordering with Mumtaj Biryani. We will confirm your order soon on WhatsApp.</div>
 </div>
 
-<script>
-/* LIVE Menu Google Sheet CSV */
-const sheetURL =
-  "https://docs.google.com/spreadsheets/d/e/2PACX-1vTP0KJ_WjnHoYVec0BEQQkWw9ZmiQNquh-WapC5hAb6sSdqAmCOOIyeKG6UNG7R83w3zvS-0todyla3/pub?output=csv";
+<!-- Thank You Popup -->
+<div id="popup" class="popup-bg">
+  <div class="popup-box">
+    <h2>Thank You!</h2>
+    <p>Your order has been sent to Mumtaj Biryani. We will confirm shortly on WhatsApp.</p>
+    <button onclick="closePopup()">OK</button>
+  </div>
+</div>
 
-const whatsappNumber = "918319100020"; // Correct format with country code
+
+<script>
+const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTP0KJ_WjnHoYVec0BEQQkWw9ZmiQNquh-WapC5hAb6sSdqAmCOOIyeKG6UNG7R83w3zvS-0todyla3/pub?output=csv";
+const whatsappNumber = "918319100020";
 
 async function loadMenu() {
-  try {
-    const res = await fetch(sheetURL);
-    const text = await res.text();
-    const rows = text.split("\n").map(r => r.split(","));
-    const menuContainer = document.getElementById("menu");
+  const res = await fetch(sheetURL);
+  const text = await res.text();
+  const rows = text.split("\n").map(r => r.split(","));
 
-    for (let i = 1; i < rows.length; i++) {
-      const [item, desc, price, image] = rows[i];
-      if (!item) continue;
+  const menuContainer = document.getElementById("menu");
 
-      const div = document.createElement("div");
-      div.className = "item";
+  for (let i = 1; i < rows.length; i++) {
+    let [item, desc, price, image] = rows[i];
 
-      div.innerHTML = `
-        ${image ? `<img src="${image.trim()}" alt="${item}" onerror="this.src='https://via.placeholder.com/600x400?text=No+Image'">` : ""}
-        <div class="details">
-          <h3>${item}</h3>
-          <p>${desc}</p>
-          <p><strong>₹${price}</strong></p>
-          <label>Qty: <input type="number" min="0" value="0" id="qty-${i}" onchange="updateTotal()"></label>
-        </div>
-      `;
+    if (!item) continue;
 
-      div.dataset.name = item;
-      div.dataset.price = parseFloat(price) || 0;
+    if (image) image = image.replace(/"/g, "").trim();
 
-      menuContainer.appendChild(div);
-    }
-  } catch (e) {
-    document.getElementById("menu").innerHTML =
-      "<p style='text-align:center;color:red;'>Menu loading failed. Check your Google Sheet.</p>";
+    const box = document.createElement("div");
+    box.className = "item";
+
+    box.innerHTML = `
+      ${image ? `<img src="${image}" onerror="this.style.display='none'">` : ""}
+      <div class="details">
+        <h3>${item}</h3>
+        <p>${desc}</p>
+        <p><strong>₹${price}</strong></p>
+        Qty: <input id="qty-${i}" type="number" value="0" min="0">
+      </div>
+    `;
+
+    box.dataset.name = item;
+    menuContainer.appendChild(box);
   }
-}
-
-function updateTotal() {
-  const items = document.querySelectorAll(".item");
-  let total = 0;
-
-  items.forEach((it, i) => {
-    const qtyInput = document.getElementById(`qty-${i+1}`);
-    if (qtyInput && qtyInput.value > 0) {
-      total += it.dataset.price * qtyInput.value;
-    }
-  });
-
-  document.getElementById("total").innerText = `Total: ₹${total}`;
 }
 
 function sendOrder() {
   const items = document.querySelectorAll(".item");
   let orderList = [];
-  let total = 0;
 
   items.forEach((it, i) => {
     const qty = document.getElementById(`qty-${i+1}`);
     if (qty && qty.value > 0) {
       orderList.push(`${it.dataset.name} x${qty.value}`);
-      total += it.dataset.price * qty.value;
     }
   });
 
@@ -247,21 +206,26 @@ function sendOrder() {
     return;
   }
 
-  const datetime = document.getElementById("datetime").value;
-  const address = document.getElementById("address").value.trim();
-
-  if (!datetime || !address) {
-    alert("Please enter date/time and address.");
+  const dt = document.getElementById("datetime").value;
+  if (!dt) {
+    alert("Please select delivery date & time.");
     return;
   }
 
-  const msg =
-    `New Order from Mumtaj Biryani:%0A${orderList.join("%0A")}%0A%0ATotal: ₹${total}%0ADelivery: ${datetime}%0AAddress: ${address}`;
+  const message =
+    `New Order (Mumtaj Biryani):%0A${orderList.join("%0A")}%0A%0ADelivery: ${dt}`;
 
-  window.open(`https://wa.me/${whatsappNumber}?text=${msg}`, "_blank");
+  // Open WhatsApp
+  window.open(`https://wa.me/${whatsappNumber}?text=${message}`, "_blank");
 
-  document.getElementById("thankyou").style.display = "block";
-  document.getElementById("menu").scrollIntoView({ behavior: "smooth" });
+  // Show popup AFTER opening WhatsApp
+  setTimeout(() => {
+    document.getElementById("popup").style.display = "flex";
+  }, 1000);
+}
+
+function closePopup() {
+  document.getElementById("popup").style.display = "none";
 }
 
 loadMenu();
