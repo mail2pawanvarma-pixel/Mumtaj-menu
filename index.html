@@ -101,7 +101,7 @@
     color:#7a0a0a;
   }
 
-  input[type=datetime-local], select {
+  input[type=text], input[type=datetime-local], select {
     width:100%;
     padding:12px;
     margin-top:15px;
@@ -134,11 +134,14 @@
 <header>Mumtaj Biryani</header>
 
 <div class="sub">Authentic Hyderabadi Taste</div>
-<div class="address">Near Shadipur Main Road, Your City</div>
+<div class="address">Bus-stand, Bishrampur</div>
 
 <div id="menu" class="menu"></div>
 
 <div class="order-box">
+
+  <label style="font-weight:bold;">Customer Name:</label>
+  <input type="text" id="customerName" placeholder="Enter your name">
 
   <label style="font-weight:bold;">Order Type:</label>
   <select id="orderType">
@@ -181,13 +184,11 @@ async function loadMenu() {
         <h3>${item}</h3>
         <p>${desc}</p>
         <p><strong>₹${price}</strong></p>
-        Qty: <input id="qty-${i}" type="number" min="0" value="0" data-price="${price}" oninput="updateTotal()">
+        Qty: <input id="qty-${i}" type="number" min="0" value="0"
+        data-price="${price}" oninput="updateTotal()">
       </div>
     `;
-
     box.dataset.name = item;
-    box.dataset.price = price;
-
     menuContainer.appendChild(box);
   }
 }
@@ -210,6 +211,12 @@ function setMinDateTime() {
 }
 
 function sendOrder() {
+  const customerName = document.getElementById("customerName").value.trim();
+  if (!customerName) {
+    alert("Please enter your name.");
+    return;
+  }
+
   const items = document.querySelectorAll(".item");
   let orderList = [];
 
@@ -231,11 +238,12 @@ function sendOrder() {
     return;
   }
 
-  const total = document.getElementById("total").textContent;
   const orderType = document.getElementById("orderType").value;
+  const total = document.getElementById("total").textContent;
 
   const msg =
-`New Order (Mumtaj Biryani):
+`Order from: ${customerName}
+
 ${orderList.join("\n")}
 
 Order Type: ${orderType}
